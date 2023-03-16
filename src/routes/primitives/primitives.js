@@ -14,12 +14,21 @@ camera.position.z = 120;
 const scene = new THREE.Scene();
 scene.background = new THREE.Color(0xffffff);
 
-// add light source to scene
-const color = 0xffffff;
-const intensity = 1;
-const light = new THREE.DirectionalLight(color, intensity);
-light.position.set(1, -2, -4);
-scene.add(light);
+// add light sources to scene
+{
+	const color = 0xffffff;
+	const intensity = 1;
+	const light = new THREE.DirectionalLight(color, intensity);
+	light.position.set(-1, 2, 4);
+	scene.add(light);
+}
+{
+	const color = 0xffffff;
+	const intensity = 1;
+	const light = new THREE.DirectionalLight(color, intensity);
+	light.position.set(1, -2, -4);
+	scene.add(light);
+}
 
 // add new object to scene
 const objects = [];
@@ -59,6 +68,43 @@ function addSolidGeometry(x, y, geometry) {
 	const height = 8;
 	const depth = 8;
 	addSolidGeometry(0, 0, new THREE.BoxGeometry(width, height, depth));
+}
+
+// flat circle
+{
+	const radius = 6;
+	const segments = 24;
+	const thetaStart = (Math.PI * 1) / 3; //60 degree angle
+	const thetaLength = (Math.PI * 5) / 3;
+	addSolidGeometry(1.5, 0, new THREE.CircleGeometry(radius, segments, thetaStart, thetaLength));
+}
+
+// cone
+{
+	const radius = 6;
+	const height = 8;
+	const radialSegments = 16;
+	addSolidGeometry(-1.5, 0, new THREE.ConeGeometry(radius, height, radialSegments));
+}
+
+// cylinder
+{
+	const radiusTop = 4;
+	const radiusBottom = 6;
+	const height = 8;
+	const radialSegments = 12;
+	addSolidGeometry(
+		3,
+		0,
+		new THREE.CylinderGeometry(radiusTop, radiusBottom, height, radialSegments)
+	);
+}
+
+// Dodecahedron (12 sides)
+{
+	const radius = 5;
+	const detail = 0;
+	addSolidGeometry(-3, 0, new THREE.DodecahedronGeometry(radius, detail));
 }
 
 // render scence
