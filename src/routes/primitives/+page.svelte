@@ -13,11 +13,18 @@
 	<meta name="description" content="Three.js primitives" />
 </svelte:head>
 
-<canvas bind:this={el} />
+<div>
+	<canvas bind:this={el} />
+</div>
 
 <style>
 	canvas {
 		width: 100%;
+		height: 100%;
 		display: block;
+	}
+
+	div {
+		border: 1px solid black;
 	}
 </style>
